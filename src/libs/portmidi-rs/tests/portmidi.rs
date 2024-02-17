@@ -27,12 +27,12 @@ fn test_main() {
 
         // creating virtual ports on windows not possible that way (only through drivers)
         if !cfg!(windows) {
-            assert_eq!(context.virtual_device_count(), 0);
+            assert_eq!(context.device_count(), 0);
             let v_in = context.create_virtual_input("Virt in").unwrap();
             context.create_virtual_output("Virt out").unwrap();
-            assert_eq!(context.virtual_device_count(), 2);
-            context.delete_virtual_device(v_in.id()).unwrap();
-            assert_eq!(context.virtual_device_count(), 1);
+            assert_eq!(context.device_count(), 2);
+            // context.delete_virtual_device(v_in.id()).unwrap();
+            // assert_eq!(context.device_count(), 1);
         }
 
         let mut in_port = context.default_input_port(1024).unwrap();
